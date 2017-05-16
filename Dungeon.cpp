@@ -18,6 +18,11 @@ Dungeon::Dungeon() {
     // Here we initialize our array size
     dungeonHeight = 3;
     dungeonWidth = 3;
+    
+    //This is the location of the dungeon on screen.
+    location.x = 200;
+    location.y = 0;
+    
     //dungeon = new DungeonNode[dungeonHeight][dungeonWidth];
     
     // This for loop initializes the elements in our dungeon to nodes
