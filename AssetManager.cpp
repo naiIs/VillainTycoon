@@ -17,7 +17,7 @@ AssetManager::AssetManager() {
     
     textureCount = 0;
     
-    maxTextures = 4;
+    maxTextures = 5;
     
     textures = new sf::Texture[maxTextures];
     textureIndex = new std::string[maxTextures];
@@ -26,6 +26,7 @@ AssetManager::AssetManager() {
     loadTexture("DefaultTile.png");
     loadTexture("Hero.png");
     loadTexture("TextureNotFound.png");
+    loadTexture("AnimateTest.png");
 }
 
 AssetManager::AssetManager(const AssetManager& orig) {

@@ -15,12 +15,17 @@
 #define DUNGEON_H
 
 #include "DungeonNode.h"
+#include "Tile.h"
 
 class Dungeon {
 public:
-    Dungeon();
+    Dungeon(sf::Texture &texture);
     Dungeon(const Dungeon& orig);
     virtual ~Dungeon();
+    void draw(sf::RenderWindow &window);
+    bool add(DungeonNode * node);    
+    DungeonNode * getEntrance();
+    void soundOff();
 private:
     // Here we'll create our room data structure, a series of linked DungeonNode
     // pointers stored in a 2d array
@@ -28,6 +33,9 @@ private:
     int dungeonWidth;
     DungeonNode * dungeon[3][3];
     sf::Vector2i location;
+    sf::Vector2i tileSize;
+    int snapRange;
+    DungeonNode * replace(DungeonNode * node, DungeonNode * oldNode);
 };
 
 #endif /* DUNGEON_H */

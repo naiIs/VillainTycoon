@@ -16,10 +16,16 @@
 
 Tile::Tile()
 {
+    size.x = 200;
+    size.y = 200;
     selected = false;
 }
 
 Tile::~Tile() 
 {
     
+}
+
+void Tile::drawTile(sf::RenderWindow &window){
+    window.draw(*this);
 }

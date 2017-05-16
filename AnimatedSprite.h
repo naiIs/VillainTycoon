@@ -14,13 +14,19 @@
 #ifndef ANIMATEDSPRITE_H
 #define ANIMATEDSPRITE_H
 
-class AnimatedSprite {
+#include <SFML/Graphics.hpp>
+
+class AnimatedSprite : public sf::Sprite {
 public:
-    AnimatedSprite();
+    AnimatedSprite(int maxF, int fWidth, int fHeight);
     AnimatedSprite(const AnimatedSprite& orig);
     virtual ~AnimatedSprite();
+    void nextFrame();
+    void draw(sf::RenderWindow &window);
 private:
-
+    int maxFrames;
+    int currentFrame;
+    sf::IntRect frameBounds;
 };
 
 #endif /* ANIMATEDSPRITE_H */

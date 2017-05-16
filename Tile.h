@@ -20,7 +20,9 @@ class Tile : public sf::Sprite{
 public:
     Tile();
     virtual ~Tile();
+    void drawTile(sf::RenderWindow &window);
 private:
+    sf::Vector2i size;
     bool selected;
 };
 

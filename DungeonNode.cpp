@@ -13,24 +13,45 @@
 
 
 #include "DungeonNode.h"
+#include "Dungeon.h"
 
-//#define nullptr nullptr
-
-DungeonNode::DungeonNode() {
+// The constructor sets each adjacent node pointer to null and the location to
+// the top left corner of the screen
+DungeonNode::DungeonNode(int nID) {
+    nodeID = nID;
     up = 0;
     down = 0;
     left = 0;
     right = 0;
-    location.x = 0;
-    location.y = 0;
 }
 
-DungeonNode::DungeonNode(const DungeonNode& orig) {
+DungeonNode::DungeonNode(DungeonNode& orig) {
 }
 
+// The de-constructor unlinks this node from each adjacent node
 DungeonNode::~DungeonNode() {
+    
+    // This code is commented out for now, when a node in the dungeon is deleted we don't want
+    // the node that's about to be deleted to mess with things.
+    /*if (up){
+        up->unLinkNode(d);
+    }
+    
+    if (down){
+        down->unLinkNode(u);
+    }
+    
+    if (left){
+        left->unLinkNode(r);
+    }
+    
+    if (right){
+        right->unLinkNode(l);
+    }*/
 }
 
+// The linkNode method links this node to another node adjacent to it
+// and also links that nodes's corresponding pointer to this node
 void DungeonNode::linkNode(DungeonNode * link, direction direction){
     switch (direction){
         
@@ -51,4 +72,76 @@ void DungeonNode::linkNode(DungeonNode * link, direction direction){
             link->left = this;
             break;
     }
+}
+
+// The unlink node method sets to pointer to another node to null
+DungeonNode * DungeonNode::unLinkNode(direction direction){
+    
+    DungeonNode * temp;
+    
+    switch(direction){
+        
+        case u:
+            temp = up;
+            up = 0;
+            return temp;
+            break;
+        case d:
+            temp = down;
+            down = 0;
+            return temp;
+            break;
+        case l:
+            temp = left;
+            left = 0;
+            return temp;
+            break;
+        case r:
+            temp = right;
+            right = 0;
+            return temp;
+            break;
+    }
+}
+
+// This method allows a draw call to be made by passing the render window into the
+// node, rather than vice versa
+void DungeonNode::draw(sf::RenderWindow &window){
+    
+    window.draw(*this);    
+}
+
+// This method copies all the links from a target node
+/*void DungeonNode::copyLinks(DungeonNode& orig){
+    
+    up = orig.getLink(u);
+    
+    down = orig.getLink(d);
+    
+    left = orig.getLink(l);
+    
+    right = orig.getLink(r);    
+}*/
+
+
+DungeonNode * DungeonNode::getLink(direction direction){  
+    
+    switch(direction){        
+        case u:
+            return up;
+            break;
+        case d:
+            return down;
+            break;
+        case l:
+            return left;
+            break;
+        case r:
+            return right;
+            break;
+    }
+}
+
+int DungeonNode::getID(){ 
+    return nodeID; 
 }
