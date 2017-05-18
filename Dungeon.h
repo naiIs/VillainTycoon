@@ -15,7 +15,6 @@
 #define DUNGEON_H
 
 #include "DungeonNode.h"
-#include "Tile.h"
 
 class Dungeon {
 public:

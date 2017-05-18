@@ -1,14 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
-#include <iostream>
-#include "Tile.h"
-#include "DungeonNode.h"
-#include "Dungeon.h"
-#include "Hero.h"
-#include "AssetManager.h"
-#include "AnimatedSprite.h"
+#include "GameApp.h"
 
 int main(){
+    
+    GameApp villainTycoon;
+    
+    villainTycoon.run();
+    
+    return 0;
+}
+    
+    /*
     // Declare a window object
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
      
@@ -56,7 +59,7 @@ int main(){
     int framesPerSecond = 24;
     sf::Time fps = sf::milliseconds(1000 / framesPerSecond);
            
-    // Run the program for as long as the window is open    
+    // Run the program for as long as the window is open
     while (window.isOpen())
     {
         
@@ -181,3 +184,4 @@ int main(){
 
     return 0;
 }
+*/

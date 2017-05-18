@@ -13,26 +13,27 @@
 
 #include "AssetManager.h"
 
-AssetManager::AssetManager() {
+AssetManager::AssetManager() {    
     
-    textureCount = 0;
-    
-    maxTextures = 5;
-    
-    textures = new sf::Texture[maxTextures];
-    textureIndex = new std::string[maxTextures];
-    
-    loadTexture("DungeonTile.png");
-    loadTexture("DefaultTile.png");
-    loadTexture("Hero.png");
-    loadTexture("TextureNotFound.png");
-    loadTexture("AnimateTest.png");
+    textureCount = 0;    
+    textures = NULL;
+    textureIndex = NULL;
+    maxTextures = 0;
 }
 
 AssetManager::AssetManager(const AssetManager& orig) {
 }
 
 AssetManager::~AssetManager() {
+}
+
+void AssetManager::init(){
+    maxTextures = 5;
+    
+    textures = new sf::Texture[maxTextures];
+    textureIndex = new std::string[maxTextures];
+    
+    loadTexture("TextureNotFound.png");
 }
 
 // Here we load our textures from the hdd to program memory
@@ -54,5 +55,17 @@ sf::Texture * AssetManager::getTexture(std::string texture){
     }
     
     // If the desired texture wasn't found we return our "texture not found" texture
-    return &textures[3];
+    return &textures[0];
+}
+
+void AssetManager::cleanup(){
+    //for (int i = 0; i < textureCount; i++){
+    //    delete textures[i];
+    //    delete textureIndex[i];
+    //}
+    
+    textures = NULL;
+    textureIndex = NULL;
+    
+    textureCount = 0;
 }

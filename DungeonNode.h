@@ -16,7 +16,6 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include "Tile.h"
 
 enum direction { u, d, l, r };
 

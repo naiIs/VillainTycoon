@@ -27,8 +27,10 @@ public:
     AssetManager();
     AssetManager(const AssetManager& orig);
     virtual ~AssetManager();
+    void init();
     void loadTexture(std::string texture);
     sf::Texture * getTexture(std::string texture);
+    void cleanup();
 private:
     sf::Texture * textures; // An array to hold the texture assets that the game will use
     std::string * textureIndex; // An array to hold the index of the textures that we're using
