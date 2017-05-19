@@ -28,12 +28,29 @@ AssetManager::~AssetManager() {
 }
 
 void AssetManager::init(){
-    maxTextures = 5;
+    
+    // Set up our texture managing architecture
+    maxTextures = 10;
     
     textures = new sf::Texture[maxTextures];
     textureIndex = new std::string[maxTextures];
     
     loadTexture("TextureNotFound.png");
+    
+    // Set up our font managing architecture    
+    loadFont("PixelCowboy.otf");
+}
+
+// For now the asset manager only supports one font, since we'll presumably only be
+// using one
+
+void AssetManager::loadFont(std::string f){
+    
+    font.loadFromFile(f);
+}
+
+sf::Font * AssetManager::getFont(std::string f){
+    return &font;
 }
 
 // Here we load our textures from the hdd to program memory

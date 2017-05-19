@@ -46,6 +46,7 @@ void StateManager::handleEvents(sf::Event &event, sf::RenderWindow * window){
         cleanup();     
     }    
     
+    // Pass our events down to our game state
     if (gameState){
         gameState->handleEvents(event, window);
     }

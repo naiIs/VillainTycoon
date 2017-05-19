@@ -33,6 +33,7 @@ void Gameplay::init(){
     assetManager->loadTexture("DefaultTile.png");
     assetManager->loadTexture("DungeonTile.png");
     assetManager->loadTexture("Hero.png");
+    assetManager->loadTexture("Button.png");
     
     // Spawn our dungeon
     dungeon = new Dungeon(*assetManager->getTexture("DefaultTile.png"));
@@ -47,10 +48,16 @@ void Gameplay::init(){
     
     nodeID = 9;
     
+    // This helps us manage whether the mouse is held down or not
     held = false;
     
     mouseOffset.x = 0;
     mouseOffset.y = 0;
+    
+    // Load our button 
+    buyRoom.setTexture(*assetManager->getTexture("Button.png"));
+    buyRoom.setPosition(25, 225);
+    
 }
 
 // Here we handle all the user generated events
@@ -94,6 +101,17 @@ void Gameplay::handleEvents(sf::Event &event, sf::RenderWindow * window){
 
             held = false;
         }
+    }
+    
+    // Handle our Buy Room button.
+    if (event.type == sf::Event::MouseButtonPressed &&
+        buyRoom.getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
+        buyRoom.clicked();
+    }
+    
+    if (event.type == sf::Event::MouseButtonReleased &&
+        buyRoom.getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
+        buyRoom.released();
     }
     
     // This event manages our keyboard input. This is mainlly to test some of the hero
@@ -141,6 +159,7 @@ void Gameplay::draw(sf::RenderWindow &window){
     dungeon->draw(window);
     spriteSpawn->draw(window);
     hero->draw(window);
+    buyRoom.draw(window);
 }
 
 void Gameplay::spawnNewSprite(){

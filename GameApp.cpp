@@ -56,6 +56,7 @@ void GameApp::initRenderer(){
 // Initialize our first game state
 void GameApp::initGamestate(){
     
+    // Initialize our state manager
     stateManager = new StateManager;
     stateManager->init();
     
