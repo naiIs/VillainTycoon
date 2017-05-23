@@ -31,6 +31,7 @@ public:
     void update();
     void draw(sf::RenderWindow &window);
     void spawnNewSprite();
+    void pickNewRoom();
 private:
     AssetManager * assetManager;
     Dungeon * dungeon;

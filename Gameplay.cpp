@@ -12,6 +12,8 @@
  */
 
 #include "Gameplay.h"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 #include <string>
 
 Gameplay::Gameplay() {
@@ -34,6 +36,9 @@ void Gameplay::init(){
     assetManager->loadTexture("DungeonTile.png");
     assetManager->loadTexture("Hero.png");
     assetManager->loadTexture("Button.png");
+    assetManager->loadTexture("BanditRoom.png");
+    assetManager->loadTexture("ImpRoom.png");
+    assetManager->loadTexture("OgreRoom.png");
     
     // Spawn our dungeon
     dungeon = new Dungeon(*assetManager->getTexture("DefaultTile.png"));
@@ -112,6 +117,7 @@ void Gameplay::handleEvents(sf::Event &event, sf::RenderWindow * window){
     if (event.type == sf::Event::MouseButtonReleased &&
         buyRoom.getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
         buyRoom.released();
+        pickNewRoom();
     }
     
     // This event manages our keyboard input. This is mainlly to test some of the hero
@@ -166,4 +172,47 @@ void Gameplay::spawnNewSprite(){
     spriteSpawn = new DungeonNode(nodeID);
     spriteSpawn->setTexture(*assetManager->getTexture("DungeonTile.png"));
     nodeID++;
+}
+
+void Gameplay::pickNewRoom(){
+    bool picked = false;
+    sf::RenderWindow pickRoom(sf::VideoMode(600, 200), "Pick a room", sf::Style::None);
+    sf::Event event;
+    
+    sf::Sprite room1;
+    sf::Sprite room2;
+    sf::Sprite room3;
+    
+    room1.setTexture(*assetManager->getTexture("ImpRoom.png"));
+    room2.setTexture(*assetManager->getTexture("OgreRoom.png"));
+    room3.setTexture(*assetManager->getTexture("BanditRoom.png"));
+    
+    room2.setPosition(200, 0);
+    room3.setPosition(400, 0);
+    
+    pickRoom.draw(room1);
+    pickRoom.draw(room2);
+    pickRoom.draw(room3);
+    
+    pickRoom.display();
+                       
+    while(!picked){
+        if (!pickRoom.hasFocus()){
+            picked = true;
+        }
+        
+        while(pickRoom.pollEvent(event)){
+            if (event.type == sf::Event::MouseButtonPressed){
+                if(sf::Mouse::getPosition(pickRoom).x < 200){
+                    spriteSpawn->setTexture(*assetManager->getTexture("ImpRoom.png"));
+                } else if (sf::Mouse::getPosition(pickRoom).x < 400){
+                    spriteSpawn->setTexture(*assetManager->getTexture("OgreRoom.png"));
+                } else if (sf::Mouse::getPosition(pickRoom).x < 600){
+                    spriteSpawn->setTexture(*assetManager->getTexture("BanditRoom.png"));
+                } 
+                
+                picked = true;
+            }        
+        }
+    }
 }
