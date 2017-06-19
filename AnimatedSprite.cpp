@@ -13,13 +13,21 @@
 
 #include "AnimatedSprite.h"
 
-AnimatedSprite::AnimatedSprite(int maxF, int fWidth, int fHeight) {
+// The AnimatedSprite methods
+
+AnimatedSprite::AnimatedSprite(int maxF, int fWidth, int fHeight, int fDelay) {
     maxFrames = maxF;
     currentFrame = 1;
     frameBounds.left = 0;
     frameBounds.top = 0;
     frameBounds.height = fHeight;
     frameBounds.width = fWidth;
+    frameDelay = fDelay;
+    currentDelay = 0;
+}
+
+AnimatedSprite::AnimatedSprite(){
+    
 }
 
 AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) {
@@ -30,12 +38,17 @@ AnimatedSprite::~AnimatedSprite() {
 
 void AnimatedSprite::nextFrame(){
     
-    if (currentFrame < maxFrames){
-        currentFrame++;
-        frameBounds.left += frameBounds.width;
+    if (currentDelay < frameDelay){
+        currentDelay++;
     } else {
-        currentFrame = 1;
-        frameBounds.left = 0;
+        currentDelay = 0;
+        if (currentFrame < maxFrames){
+            currentFrame++;
+            frameBounds.left += frameBounds.width;
+        } else {
+            currentFrame = 1;
+            frameBounds.left = 0;
+        }
     }
 }
 
@@ -44,3 +57,34 @@ void AnimatedSprite::draw(sf::RenderWindow &window){
     setTextureRect(frameBounds);
     window.draw(*this);
 }
+
+// end AnimatedSprite methods
+
+// Clickable methods
+/*
+Clickable::Clickable(){
+    clickable = true;
+    dragable = false;
+    selected = false;
+    held = false;
+}
+
+Clickable::Clickable(bool click, bool drag){
+    clickable = click;
+    dragable = drag;
+    selected = false;
+    held = false;
+}
+
+void Clickable::click(){
+    
+}
+
+void Clickable::release(){
+}
+
+void Clickable::drag(int x, int y){
+    
+}
+*/
+// end Clickable methods

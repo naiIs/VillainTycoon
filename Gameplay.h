@@ -20,6 +20,7 @@
 #include "DungeonNode.h"
 #include "Hero.h"
 #include "Button.h"
+#include "Minion.h"
 
 class Gameplay : public GameState{
 public:
@@ -38,8 +39,9 @@ private:
     DungeonNode * spriteSpawn;
     Hero * hero;
     Button buyRoom;
+    Minion myBandit;
     int nodeID;
-    bool held;
+    bool mouseHeld;
     sf::Vector2i mouseOffset;
 };
 

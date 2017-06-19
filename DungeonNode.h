@@ -15,19 +15,18 @@
 #define DUNGEONNODE_H
 
 #include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
+#include "Minion.h"
+#include "AnimatedSprite.h"
 
 enum direction { u, d, l, r };
 
-class DungeonNode : public sf::Sprite{
+class DungeonNode : public AnimatedSprite{
 public:
     DungeonNode(int nID);
     DungeonNode(DungeonNode& orig);
     virtual ~DungeonNode();
     void linkNode(DungeonNode * link, direction direction);
     DungeonNode * unLinkNode(direction direction);
-    void draw(sf::RenderWindow &window);
-    //void copyLinks(DungeonNode& orig);
     DungeonNode * getLink(direction direction);
     int getID(); 
 private:

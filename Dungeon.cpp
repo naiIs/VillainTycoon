@@ -20,12 +20,12 @@ Dungeon::Dungeon(sf::Texture &texture) {
     
     // Here we initialize our array size. This is the height and width of the dungeon
     // in rooms.
-    dungeonHeight = 3;
-    dungeonWidth = 3;
+    dungeonHeight = 4;
+    dungeonWidth = 4;
     
     // This tells us the size of each tile (in pixels) that will be managed by the dungeon
-    tileSize.x = 200;
-    tileSize.y = 200;
+    tileSize.x = 150;
+    tileSize.y = 150;
     
     // This is the location of the dungeon on screen. More accurately, it's the location
     // of the upper left corner of the upper left node.
@@ -159,18 +159,11 @@ void Dungeon::draw(sf::RenderWindow &window){
 
 bool Dungeon::add(DungeonNode * node){
     
-    
-    std::cout << "Sprite spawn position when released: " << node->getPosition().x << " , " << node->getPosition().y << std::endl;
     // This loop iterates through our dungeon checking each existing node. If the node
     // to be added is within snapRange of a target node that node is replaced with the
     // new node.
     for(int i = 0; i < dungeonHeight; i++){
-        for(int j = 0; j < dungeonWidth; j++){
-            
-            std::cout << "You tried to add that to row " << i << " column" << j << std::endl;
-                
-            std::cout << "The position of the dungeon room in that location is " << dungeon[i][j]->getPosition().x << " , " << dungeon[i][j]->getPosition().y << std::endl;
-                
+        for(int j = 0; j < dungeonWidth; j++){               
             if (node->getPosition().x > dungeon[i][j]->getPosition().x - snapRange &&
                     node->getPosition().x < dungeon[i][j]->getPosition().x + snapRange &&
                     node->getPosition().y > dungeon[i][j]->getPosition().y - snapRange &&

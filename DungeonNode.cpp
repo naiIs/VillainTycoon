@@ -17,7 +17,7 @@
 
 // The constructor sets each adjacent node pointer to null and the location to
 // the top left corner of the screen
-DungeonNode::DungeonNode(int nID) {
+DungeonNode::DungeonNode(int nID) : AnimatedSprite(3, 150, 150, 2){
     nodeID = nID;
     up = 0;
     down = 0;
@@ -103,26 +103,6 @@ DungeonNode * DungeonNode::unLinkNode(direction direction){
             break;
     }
 }
-
-// This method allows a draw call to be made by passing the render window into the
-// node, rather than vice versa
-void DungeonNode::draw(sf::RenderWindow &window){
-    
-    window.draw(*this);    
-}
-
-// This method copies all the links from a target node
-/*void DungeonNode::copyLinks(DungeonNode& orig){
-    
-    up = orig.getLink(u);
-    
-    down = orig.getLink(d);
-    
-    left = orig.getLink(l);
-    
-    right = orig.getLink(r);    
-}*/
-
 
 DungeonNode * DungeonNode::getLink(direction direction){  
     

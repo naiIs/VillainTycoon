@@ -39,9 +39,10 @@ void Gameplay::init(){
     assetManager->loadTexture("BanditRoom.png");
     assetManager->loadTexture("ImpRoom.png");
     assetManager->loadTexture("OgreRoom.png");
+    assetManager->loadTexture("Images/EmptyRoom.png");
     
     // Spawn our dungeon
-    dungeon = new Dungeon(*assetManager->getTexture("DefaultTile.png"));
+    dungeon = new Dungeon(*assetManager->getTexture("Images/EmptyRoom.png"));
     
     // Set up our sprite spawn
     spawnNewSprite();
@@ -54,8 +55,10 @@ void Gameplay::init(){
     nodeID = 9;
     
     // This helps us manage whether the mouse is held down or not
-    held = false;
+    mouseHeld = false;
     
+    // Set the current offset of the mouse from the corner of the currently selected
+    // object to 0;
     mouseOffset.x = 0;
     mouseOffset.y = 0;
     
@@ -63,6 +66,10 @@ void Gameplay::init(){
     buyRoom.setTexture(*assetManager->getTexture("Button.png"));
     buyRoom.setPosition(25, 225);
     
+    // Here we're going to test our new minion sprite
+    assetManager->loadTexture(myBandit.getDefaultTexture());
+    myBandit.setTexture(*assetManager->getTexture(myBandit.getDefaultTexture()));
+    myBandit.setPosition(300, 50);
 }
 
 // Here we handle all the user generated events
@@ -73,13 +80,13 @@ void Gameplay::handleEvents(sf::Event &event, sf::RenderWindow * window){
     if (event.type == sf::Event::MouseButtonPressed &&
         spriteSpawn->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))
     {
-        held = true;
+        mouseHeld = true;
         mouseOffset.x = spriteSpawn->getPosition().x + sf::Mouse::getPosition(*window).x;
         mouseOffset.y = spriteSpawn->getPosition().y + sf::Mouse::getPosition(*window).y;
     }
     
     // This happens if an event is received while the mouse is pressed
-    if (held){
+    if (mouseHeld){
         
         // If we're holding the sprite and we move the mouse, move the position of the sprite
         // to the mouse's new position
@@ -104,7 +111,7 @@ void Gameplay::handleEvents(sf::Event &event, sf::RenderWindow * window){
             // the sprite back up into the corner.
             spriteSpawn->setPosition(0,0);
 
-            held = false;
+            mouseHeld = false;
         }
     }
     
@@ -166,11 +173,12 @@ void Gameplay::draw(sf::RenderWindow &window){
     spriteSpawn->draw(window);
     hero->draw(window);
     buyRoom.draw(window);
+    myBandit.draw(window);
 }
 
 void Gameplay::spawnNewSprite(){
     spriteSpawn = new DungeonNode(nodeID);
-    spriteSpawn->setTexture(*assetManager->getTexture("DungeonTile.png"));
+    spriteSpawn->setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
     nodeID++;
 }
 
@@ -183,9 +191,9 @@ void Gameplay::pickNewRoom(){
     sf::Sprite room2;
     sf::Sprite room3;
     
-    room1.setTexture(*assetManager->getTexture("ImpRoom.png"));
-    room2.setTexture(*assetManager->getTexture("OgreRoom.png"));
-    room3.setTexture(*assetManager->getTexture("BanditRoom.png"));
+    room1.setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
+    room2.setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
+    room3.setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
     
     room2.setPosition(200, 0);
     room3.setPosition(400, 0);
@@ -204,11 +212,11 @@ void Gameplay::pickNewRoom(){
         while(pickRoom.pollEvent(event)){
             if (event.type == sf::Event::MouseButtonPressed){
                 if(sf::Mouse::getPosition(pickRoom).x < 200){
-                    spriteSpawn->setTexture(*assetManager->getTexture("ImpRoom.png"));
+                    spriteSpawn->setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
                 } else if (sf::Mouse::getPosition(pickRoom).x < 400){
-                    spriteSpawn->setTexture(*assetManager->getTexture("OgreRoom.png"));
+                    spriteSpawn->setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
                 } else if (sf::Mouse::getPosition(pickRoom).x < 600){
-                    spriteSpawn->setTexture(*assetManager->getTexture("BanditRoom.png"));
+                    spriteSpawn->setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
                 } 
                 
                 picked = true;

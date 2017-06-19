@@ -30,7 +30,7 @@ AssetManager::~AssetManager() {
 void AssetManager::init(){
     
     // Set up our texture managing architecture
-    maxTextures = 10;
+    maxTextures = 20;
     
     textures = new sf::Texture[maxTextures];
     textureIndex = new std::string[maxTextures];

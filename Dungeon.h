@@ -30,7 +30,7 @@ private:
     // pointers stored in a 2d array
     int dungeonHeight;
     int dungeonWidth;
-    DungeonNode * dungeon[3][3];
+    DungeonNode * dungeon[4][4];
     sf::Vector2i location;
     sf::Vector2i tileSize;
     int snapRange;
