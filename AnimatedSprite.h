@@ -29,7 +29,7 @@ public:
     void draw(sf::RenderWindow &window);
 private:
     int maxFrames; // The number of frames the animation will cycle through
-    int currentFrame;
+    int currentFrame; // The frame that we're currently drawing
     int frameDelay; // The amount of time to wait before updating the frame
     int currentDelay;
     sf::IntRect frameBounds;
@@ -37,26 +37,3 @@ private:
 
 #endif /* ANIMATEDSPRITE_H */
 
-// The Clickable class. Clickable objects will be interactable by the cursor in the
-// gamestate.
-/*
-#ifndef CLICKABLE_H
-#define CLICKABLE_H
-
-class Clickable {
-public:
-    Clickable();
-    Clickable(bool click, bool drag);
-    virtual ~Clickable();
-    virtual void click();
-    virtual void release();
-    virtual void drag(int x, int y);
-private:
-    bool clickable;
-    bool dragable;
-    bool selected;
-    bool held;    
-};
-
-#endif // CLICKABLE_H
-*/

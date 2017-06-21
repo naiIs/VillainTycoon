@@ -27,7 +27,14 @@ AnimatedSprite::AnimatedSprite(int maxF, int fWidth, int fHeight, int fDelay) {
 }
 
 AnimatedSprite::AnimatedSprite(){
-    
+    maxFrames = 1;
+    currentFrame = 1;
+    frameBounds.left = 0;
+    frameBounds.top = 0;
+    frameBounds.height = 100; // Default sprites are 100x100
+    frameBounds.width = 100;
+    frameDelay = 0;
+    currentDelay = 0;    
 }
 
 AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) {
@@ -60,31 +67,3 @@ void AnimatedSprite::draw(sf::RenderWindow &window){
 
 // end AnimatedSprite methods
 
-// Clickable methods
-/*
-Clickable::Clickable(){
-    clickable = true;
-    dragable = false;
-    selected = false;
-    held = false;
-}
-
-Clickable::Clickable(bool click, bool drag){
-    clickable = click;
-    dragable = drag;
-    selected = false;
-    held = false;
-}
-
-void Clickable::click(){
-    
-}
-
-void Clickable::release(){
-}
-
-void Clickable::drag(int x, int y){
-    
-}
-*/
-// end Clickable methods

@@ -14,13 +14,11 @@
 #include "Button.h"
 #include "AnimatedSprite.h"
 
-Button::Button() {
+Button::Button(){
     frameBounds.width = 150;
     frameBounds.height = 50;
     frameBounds.top = 0;
     frameBounds.left = 0;
-    
-    setTextureRect(frameBounds);
 }
 
 Button::Button(const Button& orig) {
@@ -30,17 +28,21 @@ Button::~Button() {
 }
 
 std::string Button::defaultTexture(){
-    return "Button.png";
+    return "Images/NewRoomButton.png";
 }
 
-void Button::clicked(){
-    frameBounds.left = 150;
+void Button::click(){
+    frameBounds.top = 50;
     setTextureRect(frameBounds);
 }
 
-void Button::released(){
-    frameBounds.left = 0;
+void Button::release(){
+    frameBounds.top = 0;
     setTextureRect(frameBounds);
+}
+
+void Button::drag(int x, int y){
+    
 }
 
 void Button::draw(sf::RenderWindow &window){

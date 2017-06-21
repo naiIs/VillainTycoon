@@ -40,9 +40,11 @@ void Gameplay::init(){
     assetManager->loadTexture("ImpRoom.png");
     assetManager->loadTexture("OgreRoom.png");
     assetManager->loadTexture("Images/EmptyRoom.png");
+    assetManager->loadTexture("Images/EmptyCave.png");
+    assetManager->loadTexture("Images/NewRoomButton.png");
     
     // Spawn our dungeon
-    dungeon = new Dungeon(*assetManager->getTexture("Images/EmptyRoom.png"));
+    dungeon = new Dungeon(*assetManager->getTexture("Images/EmptyCave.png"));
     
     // Set up our sprite spawn
     spawnNewSprite();
@@ -51,8 +53,6 @@ void Gameplay::init(){
     hero = new Hero;
     hero->setTexture(*assetManager->getTexture("Hero.png"));
     hero->move(dungeon->getEntrance());
-    
-    nodeID = 9;
     
     // This helps us manage whether the mouse is held down or not
     mouseHeld = false;
@@ -63,8 +63,9 @@ void Gameplay::init(){
     mouseOffset.y = 0;
     
     // Load our button 
-    buyRoom.setTexture(*assetManager->getTexture("Button.png"));
-    buyRoom.setPosition(25, 225);
+    buyRoom = new Button;
+    buyRoom->setTexture(*assetManager->getTexture("Images/NewRoomButton.png"));
+    buyRoom->setPosition(25, 225);
     
     // Here we're going to test our new minion sprite
     assetManager->loadTexture(myBandit.getDefaultTexture());
@@ -117,13 +118,13 @@ void Gameplay::handleEvents(sf::Event &event, sf::RenderWindow * window){
     
     // Handle our Buy Room button.
     if (event.type == sf::Event::MouseButtonPressed &&
-        buyRoom.getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
-        buyRoom.clicked();
+        buyRoom->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
+        buyRoom->click();
     }
     
     if (event.type == sf::Event::MouseButtonReleased &&
-        buyRoom.getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
-        buyRoom.released();
+        buyRoom->getGlobalBounds().contains(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y)){
+        buyRoom->release();
         pickNewRoom();
     }
     
@@ -172,14 +173,13 @@ void Gameplay::draw(sf::RenderWindow &window){
     dungeon->draw(window);
     spriteSpawn->draw(window);
     hero->draw(window);
-    buyRoom.draw(window);
+    buyRoom->draw(window);
     myBandit.draw(window);
 }
 
 void Gameplay::spawnNewSprite(){
-    spriteSpawn = new DungeonNode(nodeID);
+    spriteSpawn = new DungeonNode(0);
     spriteSpawn->setTexture(*assetManager->getTexture("Images/EmptyRoom.png"));
-    nodeID++;
 }
 
 void Gameplay::pickNewRoom(){

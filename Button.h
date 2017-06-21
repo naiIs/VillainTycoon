@@ -14,17 +14,19 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include "Clickable.h"
+#include "AnimatedSprite.h"
 #include <SFML/Graphics.hpp>
-#include <string>
 
-class Button : public sf::Sprite {
+class Button : public AnimatedSprite, public Clickable{
 public:
     Button();
     Button(const Button& orig);
     virtual ~Button();
     std::string defaultTexture();
-    void clicked();
-    void released();
+    void click();
+    void release();
+    void drag(int x, int y);
     void draw(sf::RenderWindow &window);
 private:
     sf::IntRect frameBounds;

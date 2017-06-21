@@ -17,7 +17,7 @@
 
 // The constructor sets each adjacent node pointer to null and the location to
 // the top left corner of the screen
-DungeonNode::DungeonNode(int nID) : AnimatedSprite(3, 150, 150, 2){
+DungeonNode::DungeonNode(int nID) : AnimatedSprite(3, 150, 150, 4){
     nodeID = nID;
     up = 0;
     down = 0;
