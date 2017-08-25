@@ -31,17 +31,17 @@ std::string Button::defaultTexture(){
     return "Images/NewRoomButton.png";
 }
 
-void Button::click(){
-    frameBounds.top = 50;
+void Button::clicked(sf::Event &event){
+    frameBounds.left = 150;
     setTextureRect(frameBounds);
 }
 
-void Button::release(){
-    frameBounds.top = 0;
+void Button::released(sf::Event &event){
+    frameBounds.left = 0;
     setTextureRect(frameBounds);
 }
 
-void Button::drag(int x, int y){
+void Button::dragged(sf::Event &event){
     
 }
 

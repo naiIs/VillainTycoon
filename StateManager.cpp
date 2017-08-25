@@ -70,6 +70,7 @@ void StateManager::cleanup(){
     // and we were passed the asset manager by reference.
     delete gameState;
     
+    // don't keep pointers to deleted objects
     gameState = NULL;
 }
 

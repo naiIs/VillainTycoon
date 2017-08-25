@@ -17,10 +17,11 @@
 #include <SFML/System.hpp>
 #include "Minion.h"
 #include "AnimatedSprite.h"
+#include "Clickable.h"
 
 enum direction { u, d, l, r };
 
-class DungeonNode : public AnimatedSprite{
+class DungeonNode : public AnimatedSprite, public Clickable{
 public:
     DungeonNode(int nID);
     DungeonNode(DungeonNode& orig);
@@ -29,6 +30,9 @@ public:
     DungeonNode * unLinkNode(direction direction);
     DungeonNode * getLink(direction direction);
     int getID(); 
+    void clicked(sf::Event &event);
+    void released(sf::Event &event);
+    void dragged(sf::Event &event);
 private:
     DungeonNode * up;
     DungeonNode * down;

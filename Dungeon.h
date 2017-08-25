@@ -15,8 +15,10 @@
 #define DUNGEON_H
 
 #include "DungeonNode.h"
+#include "Clickable.h"
+#include <string>
 
-class Dungeon {
+class Dungeon{
 public:
     Dungeon(sf::Texture &texture);
     Dungeon(const Dungeon& orig);
@@ -24,7 +26,6 @@ public:
     void draw(sf::RenderWindow &window);
     bool add(DungeonNode * node);    
     DungeonNode * getEntrance();
-    void soundOff();
 private:
     // Here we'll create our room data structure, a series of linked DungeonNode
     // pointers stored in a 2d array

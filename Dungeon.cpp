@@ -12,7 +12,6 @@
  */
 
 #include "Dungeon.h"
-#include <iostream>
 
 // We're passing the texture into the constructor instead of loading it here so that
 // the texture won't go out of scope for the duration of the program run.
@@ -169,11 +168,7 @@ bool Dungeon::add(DungeonNode * node){
                     node->getPosition().y > dungeon[i][j]->getPosition().y - snapRange &&
                     node->getPosition().y < dungeon[i][j]->getPosition().y + snapRange)
             {
-                
-                // Replace the old node with the new node that we're adding to the dungeon
-                ///dungeon[i][j] = replace(node, dungeon[i][j]);
-                std::cout << "THE NEW SPRITE IS INSIDE THIS NODE!" << std::endl;
-                
+               
                 node->setPosition(dungeon[i][j]->getPosition());
                 
                 if (dungeon[i][j]->getLink(u)){
@@ -236,18 +231,4 @@ bool Dungeon::add(DungeonNode * node){
 
 DungeonNode * Dungeon::getEntrance(){
     return dungeon[0][0];
-}
-
-void Dungeon::soundOff(){
-    for (int i = 0; i < dungeonHeight; i++){
-        for(int j = 0; j < dungeonWidth; j++){
-            std::cout << "I am node " << dungeon[i][j]->getID() << std::endl;
-            std::cout << "Above me is ";
-            if (dungeon[i][j]->getLink(u)){
-                std::cout << "node # " << dungeon[i][j]->getLink(u)->getID() << std::endl;
-            } else {
-                std::cout << "nothing." << std::endl;
-            }
-        }
-    }
 }

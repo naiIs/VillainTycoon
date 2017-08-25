@@ -32,19 +32,14 @@ public:
     void handleEvents(sf::Event &event, sf::RenderWindow * window);
     void update();
     void draw(sf::RenderWindow &window);
-    void spawnNewSprite();
-    void pickNewRoom();
 private:
     AssetManager * assetManager; 
     Dungeon * dungeon;
-    DungeonNode * spriteSpawn;
+    Button * buttons;
+    int buttonsCount;
     Clickable * clickables;
     int clickablesCount;
-    Hero * hero; // Temporary, for testing
-    Button * buyRoom; // Temporary, for testing
-    Minion myBandit; // Temporary, for testing
     bool mouseHeld;
-    sf::Vector2i mouseOffset;
 };
 
 #endif /* GAMEPLAY_H */

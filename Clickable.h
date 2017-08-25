@@ -8,28 +8,31 @@
  * File:   Clickable.h
  * Author: logan
  *
- * Created on June 20, 2017, 10:38 AM
+ * Created on June 27, 2017, 9:42 AM
  */
-
-// The Clickable class. Clickable objects will be interactable by the cursor in the
-// gamestate.
 
 #ifndef CLICKABLE_H
 #define CLICKABLE_H
 
-class Clickable{
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+
+class Clickable {
 public:
     Clickable();
-    Clickable(bool click, bool drag);
+    Clickable(bool click, bool drag, bool select, sf::IntRect bounds);
+    Clickable(const Clickable& orig);
     virtual ~Clickable();
-    virtual void click();
-    virtual void release();
-    virtual void drag(int x, int y);
+    virtual void clicked(sf::Event &event);
+    virtual void released(sf::Event &event);
+    virtual void dragged(sf::Event &event);
 private:
     bool clickable;
     bool dragable;
+    bool selectable;
     bool selected;
-    bool held;    
+    sf::IntRect bounds;
+
 };
 
-#endif // CLICKABLE_H
+#endif /* CLICKABLE_H */

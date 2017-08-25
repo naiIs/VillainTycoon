@@ -29,7 +29,7 @@ public:
     virtual ~AssetManager();
     void init();
     void loadFont(std::string font);
-    sf::Font * getFont(std::string font);
+    sf::Font * getFont();
     void loadTexture(std::string texture);
     sf::Texture * getTexture(std::string texture);
     void cleanup();
@@ -38,7 +38,7 @@ private:
     std::string * textureIndex; // An array to hold the index of the textures that we're using
     int textureCount; // a count of the number of textures that we've loaded.
     int maxTextures; // The maximum number of textures that our game supports
-    sf::Font font;
+    sf::Font font; // This is the font that the game will use
 };
 
 #endif /* ASSETMANAGER_H */

@@ -8,40 +8,33 @@
  * File:   Clickable.cpp
  * Author: logan
  * 
+<<<<<<< HEAD
  * Created on June 20, 2017, 10:38 AM
+=======
+ * Created on June 27, 2017, 9:42 AM
+>>>>>>> clickable
  */
 
 #include "Clickable.h"
 
-// Clickable methods
-
-Clickable::Clickable(){
-    clickable = true;
-    dragable = false;
-    selected = false;
-    held = false;
+Clickable::Clickable() {
 }
 
-Clickable::Clickable(bool click, bool drag){
+Clickable::Clickable(bool click, bool drag, bool select, sf::IntRect b){
     clickable = click;
     dragable = drag;
-    selected = false;
-    held = false;
+    selectable = select;
+    bounds = b;
 }
 
-Clickable::~Clickable(){
-    
+Clickable::Clickable(const Clickable& orig) {
 }
 
-void Clickable::click(){
-    
+Clickable::~Clickable() {
 }
 
-void Clickable::release(){
-}
+void Clickable::clicked(sf::Event &event){}
 
-void Clickable::drag(int x, int y){
-    
-}
+void Clickable::released(sf::Event &event){}
 
-// end Clickable methods
+void Clickable::dragged(sf::Event &event){}
