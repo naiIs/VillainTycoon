@@ -125,3 +125,15 @@ DungeonNode * DungeonNode::getLink(direction direction){
 int DungeonNode::getID(){ 
     return nodeID; 
 }
+
+void DungeonNode::clicked(sf::Event &event){
+    
+}
+
+void DungeonNode::released(sf::Event &event){
+    
+}
+
+void DungeonNode::dragged(sf::Event &event){
+    
+}

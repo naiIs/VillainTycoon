@@ -19,6 +19,8 @@ AssetManager::AssetManager() {
     textures = NULL;
     textureIndex = NULL;
     maxTextures = 0;
+    
+    init();
 }
 
 AssetManager::AssetManager(const AssetManager& orig) {
@@ -36,7 +38,7 @@ void AssetManager::init(){
     textureIndex = new std::string[maxTextures];
     
     loadTexture("TextureNotFound.png");
-    
+        
     // Set up our font managing architecture    
     loadFont("PixelCowboy.otf");
 }
@@ -49,7 +51,8 @@ void AssetManager::loadFont(std::string f){
     font.loadFromFile(f);
 }
 
-sf::Font * AssetManager::getFont(std::string f){
+// Returns the game's font
+sf::Font * AssetManager::getFont(){
     return &font;
 }
 

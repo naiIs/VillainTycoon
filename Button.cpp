@@ -33,14 +33,18 @@ std::string Button::defaultTexture(){
     return "Button.png";
 }
 
-void Button::clicked(){
+void Button::clicked(sf::Event &event){
     frameBounds.left = 150;
     setTextureRect(frameBounds);
 }
 
-void Button::released(){
+void Button::released(sf::Event &event){
     frameBounds.left = 0;
     setTextureRect(frameBounds);
+}
+
+void Button::dragged(sf::Event &event){
+    
 }
 
 void Button::draw(sf::RenderWindow &window){

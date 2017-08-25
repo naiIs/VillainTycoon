@@ -24,10 +24,19 @@ AnimatedSprite::AnimatedSprite(int maxF, int fWidth, int fHeight, int fDelay) {
     frameBounds.width = fWidth;
     frameDelay = fDelay;
     currentDelay = 0;
+    defaultSprite = "Images/TextureNotFound.png";
 }
 
 AnimatedSprite::AnimatedSprite(){
-    
+    maxFrames = 1;
+    currentFrame = 1;
+    frameBounds.left = 0;
+    frameBounds.top = 0;
+    frameBounds.height = 100;
+    frameBounds.width = 100;
+    frameDelay = 0;
+    currentDelay = 0;
+    defaultSprite = "Images/TextureNotFound.png";    
 }
 
 AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) {

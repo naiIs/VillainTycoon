@@ -18,6 +18,7 @@
 #define ANIMATEDSPRITE_H
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 class AnimatedSprite : public sf::Sprite {
 public:
@@ -33,6 +34,7 @@ private:
     int frameDelay; // The amount of time to wait before updating the frame
     int currentDelay;
     sf::IntRect frameBounds;
+    std::string defaultSprite;
 };
 
 #endif /* ANIMATEDSPRITE_H */

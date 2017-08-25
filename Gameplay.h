@@ -21,6 +21,7 @@
 #include "Hero.h"
 #include "Button.h"
 #include "Minion.h"
+#include "Clickable.h"
 
 class Gameplay : public GameState{
 public:
@@ -31,18 +32,14 @@ public:
     void handleEvents(sf::Event &event, sf::RenderWindow * window);
     void update();
     void draw(sf::RenderWindow &window);
-    void spawnNewSprite();
-    void pickNewRoom();
 private:
     AssetManager * assetManager;
     Dungeon * dungeon;
-    DungeonNode * spriteSpawn;
-    Hero * hero;
-    Button buyRoom;
-    Minion myBandit;
-    int nodeID;
+    Button * buttons;
+    int buttonsCount;
+    Clickable * clickables;
+    int clickablesCount;
     bool mouseHeld;
-    sf::Vector2i mouseOffset;
 };
 
 #endif /* GAMEPLAY_H */
