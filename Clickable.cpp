@@ -8,11 +8,7 @@
  * File:   Clickable.cpp
  * Author: logan
  * 
-<<<<<<< HEAD
- * Created on June 20, 2017, 10:38 AM
-=======
  * Created on June 27, 2017, 9:42 AM
->>>>>>> clickable
  */
 
 #include "Clickable.h"

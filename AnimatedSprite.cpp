@@ -32,18 +32,11 @@ AnimatedSprite::AnimatedSprite(){
     currentFrame = 1;
     frameBounds.left = 0;
     frameBounds.top = 0;
-<<<<<<< HEAD
-    frameBounds.height = 100; // Default sprites are 100x100
-    frameBounds.width = 100;
-    frameDelay = 0;
-    currentDelay = 0;    
-=======
     frameBounds.height = 100;
     frameBounds.width = 100;
     frameDelay = 0;
     currentDelay = 0;
     defaultSprite = "Images/TextureNotFound.png";    
->>>>>>> clickable
 }
 
 AnimatedSprite::AnimatedSprite(const AnimatedSprite& orig) {
