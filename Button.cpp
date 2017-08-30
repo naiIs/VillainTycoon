@@ -19,6 +19,7 @@ Button::Button(){
     frameBounds.height = 50;
     frameBounds.top = 0;
     frameBounds.left = 0;
+    buttonTexture = "Images/Button.png";
 }
 
 Button::Button(const Button& orig) {
@@ -28,7 +29,7 @@ Button::~Button() {
 }
 
 std::string Button::defaultTexture(){
-    return "Images/NewRoomButton.png";
+    return buttonTexture;
 }
 
 void Button::clicked(sf::Event &event){

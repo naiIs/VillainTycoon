@@ -20,6 +20,7 @@
 #include "DungeonNode.h"
 #include "Hero.h"
 #include "Button.h"
+#include "BuyButton.h"
 #include "Minion.h"
 #include "Clickable.h"
 
@@ -30,14 +31,15 @@ public:
     virtual ~Gameplay();
     void init();
     void handleEvents(sf::Event &event, sf::RenderWindow * window);
+    void pickNewRoom();
     void update();
     void draw(sf::RenderWindow &window);
 private:
     AssetManager * assetManager; 
     Dungeon * dungeon;
-    Button * buttons;
+    Button * *buttons;
     int buttonsCount;
-    Clickable * clickables;
+    Clickable * *clickables;
     int clickablesCount;
     bool mouseHeld;
 };

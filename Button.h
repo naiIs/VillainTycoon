@@ -35,6 +35,8 @@ private:
     sf::IntRect frameBounds;
     sf::Font font;
     sf::Text text;
+protected:        
+    std::string buttonTexture;
 };
 
 #endif /* BUTTON_H */
